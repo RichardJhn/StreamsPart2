@@ -10,7 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         List<Person> people = Arrays.asList(
         new Person("Richard", "John", 22),
-        new Person("Emily", "Clark", 25),
+        new Person("Emily", "Clark", 29),
         new Person("Michael", "Smith", 30),
         new Person("Sarah", "Brown", 28),
         new Person("David", "Lee", 35),
@@ -53,30 +53,40 @@ public class Main {
             matches.forEach(System.out::println);
         }
 
-        int totalAge = 0;
-        int oldest = people.get(0).getAge();
-        int youngest = people.get(0).getAge();
+        //int totalAge = 0;
+        //int oldest = people.get(0).getAge();
+        //int youngest = people.get(0).getAge();
 
-        for (Person p : people){
-            totalAge += p.getAge();
+        double averageAge = people.stream()
+                .map(Person::getAge)
+                .reduce(0, Integer::sum)
+                / (double) people.size();
 
-            if (p.getAge() > oldest){
-                oldest = p.getAge();
-            }
-            if (p.getAge() < youngest){
-                youngest = p.getAge();
-            }
-        }
+        int oldestAge = people.stream()
+                .map(Person::getAge)
+                .max(Integer::compareTo)
+                .orElse(0);
+        int youngestAge = people.stream()
+                .map(Person::getAge)
+                .min(Integer::compareTo)
+                        .orElse(0);
+//
+//        for (Person p : people){
+//            totalAge += p.getAge();
+//
+//            if (p.getAge() > oldest){
+//                oldest = p.getAge();
+//            }
+//            if (p.getAge() < youngest){
+//                youngest = p.getAge();
+//            }
+//        }
 
-
-        double averageAge = (double) totalAge / people.size();
+        //double averageAge = (double) totalAge / people.size();
 
         System.out.println("The average Age is: " + averageAge );
-        System.out.println("The oldest is: " + oldest);
-        System.out.println("Youngest is: " + youngest);
-
-
-
+        System.out.println("The oldest is: " + oldestAge);
+        System.out.println("Youngest is: " + youngestAge);
 
         //calculate age
     }
