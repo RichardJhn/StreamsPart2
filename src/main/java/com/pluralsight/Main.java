@@ -33,7 +33,7 @@ public class Main {
                 .filter(ppl -> ppl.getFirstName().equalsIgnoreCase(nameSearch)
                 || ppl.getLastName().equalsIgnoreCase(nameSearch))
                 .collect(Collectors.toList());
-        
+
 
 //        for( Person person : people){
 //            if (person.getFirstName().equalsIgnoreCase(nameSearch)
@@ -47,9 +47,10 @@ public class Main {
         }
         else{
             System.out.println("People found: ");
-            for (Person match : matches) {
-                System.out.println(match);
-            }
+//            for (Person match : matches) {
+//                System.out.println(match);
+//            }
+            matches.forEach(System.out::println);
         }
 
         int totalAge = 0;
